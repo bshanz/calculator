@@ -11,6 +11,159 @@ body {
 }
 
 .full-container {
+  /*background-color: #eee;*/
+  background: rgb(2, 0, 36);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(56, 56, 224, 1) 19%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+  height: 500px;
+  width: 500px;
+  border-radius: 8px;
+  border: 5px solid black;
+}
+
+.display-container-2 {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  background-color: white;
+  border: solid 5px white;
+  border-radius: 8px;
+  padding-right: 5px;
+}
+
+.display-container {
+  display: flex;
+  width: 500px;
+  height: 100px;
+}
+
+.miniDisplay {
+  font-size: 20px;
+  min-height: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.display {
+  display: flex;
+  font-size: 60px;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.reg-container {
+  display: flex;
+  width: 500px;
+  height: 100px;
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.clear {
+  background-color: white;
+  display: flex;
+  border: hidden 5px white;
+  font-size: 40px;
+  border-radius: 8px;
+  padding: 5px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  margin-right: 4px;
+}
+
+/*create clases for left and right buttons if I want to fix the 1-2px margin issue*/
+
+.delete {
+  background-color: white;
+  display: flex;
+  border: hidden 5px white;
+  font-size: 40px;
+  border-radius: 8px;
+  padding: 5px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  margin-left: 4px;
+}
+
+.clear:hover,
+.delete:hover {
+  /*background-color: cornflowerblue*/
+  background: rgb(0, 212, 255);
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 1) 44%,
+    rgba(56, 56, 224, 1) 74%,
+    rgba(2, 0, 36, 1) 99%
+  );
+  color: white;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 100px;
+}
+
+.button {
+  /*to fix, change border to 'solid' and remove height*/
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  border: hidden 5px white;
+  font-size: 40px;
+  border-radius: 8px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 121px;
+  height: 67px;
+}
+
+.button:hover {
+  /*background-color: cornflowerblue*/
+  background: rgb(0, 212, 255);
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 1) 44%,
+    rgba(56, 56, 224, 1) 74%,
+    rgba(2, 0, 36, 1) 99%
+  );
+  color: white;
+}
+
+/*body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.full-container {
     background-color: #eee;
   display: flex;
   flex-direction: column;
@@ -28,6 +181,11 @@ body {
   height: 100px;
 }
 
+.display-container-2 {
+    display: flex;
+    flex-direction: column;
+}
+
 .display {
   background-color: white;
   display: flex;
@@ -41,7 +199,7 @@ body {
 }
 
 .miniDisplay{
-    font-size: 40px;
+    font-size: 20px;
 }
 
 .reg-container {
@@ -67,8 +225,6 @@ body {
   margin-top: 8px;
   margin-right: 4px;
 }
-
-/*create clases for left and right buttons if I want to fix the 1-2px margin issue*/
 
 .delete {
   background-color: white;
@@ -114,4 +270,4 @@ body {
 
 .button:hover {
   background-color: cornflowerblue;
-}
+}*/
