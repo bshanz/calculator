@@ -26,6 +26,8 @@ const allButtons = document.getElementsByClassName("button");
 const numbersCalc = document.getElementById("numbersCalc");
 const currentNumberCalc = document.getElementById("currentNumberCalc");
 
+// initiate global variables
+
 let firstDigit = "";
 let numbers = [];
 let currentNumber = [];
@@ -35,59 +37,16 @@ let displayNum;
 let deleteNum;
 let theView = [];
 let theViewFinal = "";
-//let convertNum
 
-//tests
-// 1 + 1 = -- works
-// 1 + 1 + 1 -- works
-// 11 + 11 = -- works
-// 11 + 11 = + 11 = works
-// 33 + = + = -- works
-// 33 + = + = 33 + = -- works
-// 33 + 33 = + = + = -- works
-// just pressing = -- works
-// pressing 1 + = -- works
-// 3.2 + 2.1 = -- works
-// 3.2 + 2.1 = + 2.1 = + 3.2 -- works
-// 3.3333 + 3.3333 + 3.3333 + 3.3333 + -- works
-// build function for delete button -- works
-// .... + + -- works
-// 1 + + -- works
-// 321 + 321 + 321 = + = -- works
-
-// make it work with negative numbers. This should likely only be checking/working with first digit. it will be addevent listener with if/else statement -- done
-// if subtraction is the operator, i should not be able to press a negative number again -- done
-// add function to shrink numbers and/or give warning with too many digits. Built at bottom
-// make delete button show previous number if operator is deleted
-// make - = not show 0 in display -- done
-// make delete work with subtraction
-
-// 33 - = - = -- works
-// 33 - = - = 33 - = -- works
-// 33 - 33 = - = - = -- works
-// 1 - - -- works
-// 321 - 321 - 321 = - =  -- works
-// 12 - 3 - 3 - 3 works
-
-// 123 - delete -- works
-// 123 + delete -- works
-// 123 + delete + 3 = -- works
-// 123 - delete - 3 = -- works
-// 123 - delete + 3 = -- works
-// 123 - + -- works
-// 123 + - 32 = -- works
-
-// 3 + 3 - 3 = -- works
-// 3 + 3 = - 3 -- works
-// delete button doesn't work
-// 3 + delete - 3 = -- doesn't work
-
-// 100 * 200 / 300 -- doesn't work. After the operator is switched, I believe firstdigit and/or convernum should be cleared
-
-// enable player to select decimal
+// enable user to select decimal
 
 decimal.addEventListener("click", (e) => {
-  if (currentNumber.length === 0) {
+  if (
+    currentNumber.includes(".") ||
+    numbers.includes(".") ||
+    firstDigit.includes(".")
+  ) {
+  } else if (currentNumber.length === 0) {
     firstDigit += e.target.value;
     display.innerText = firstDigit;
     convertNum = parseFloat(firstDigit);
@@ -98,22 +57,23 @@ decimal.addEventListener("click", (e) => {
   }
   // checks and removes duplicate decimals
   decimalFindAndRemove();
+  checkDisplayLength();
 });
 
-// enable the player to select numbers
+// enable the user to select numbers
 
 zero.addEventListener("click", (e) => {
-    if (currentNumber.length === 0) {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    } else {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    }
-    showCalc();
-  });
+  if (currentNumber.length === 0) {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  } else {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  }
+  showCalc();
+});
 
 one.addEventListener("click", (e) => {
   if (currentNumber.length === 0) {
@@ -183,56 +143,56 @@ five.addEventListener("click", (e) => {
 });
 
 six.addEventListener("click", (e) => {
-    if (currentNumber.length === 0) {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    } else {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    }
-    showCalc();
-  });
+  if (currentNumber.length === 0) {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  } else {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  }
+  showCalc();
+});
 
 seven.addEventListener("click", (e) => {
-    if (currentNumber.length === 0) {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    } else {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    }
-    showCalc();
-  });
+  if (currentNumber.length === 0) {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  } else {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  }
+  showCalc();
+});
 
 eight.addEventListener("click", (e) => {
-    if (currentNumber.length === 0) {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    } else {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    }
-    showCalc();
-  });
+  if (currentNumber.length === 0) {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  } else {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  }
+  showCalc();
+});
 
 nine.addEventListener("click", (e) => {
-    if (currentNumber.length === 0) {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    } else {
-      firstDigit += e.target.value;
-      display.innerText = firstDigit;
-      convertNum = parseFloat(firstDigit);
-    }
-    showCalc();
-  });
+  if (currentNumber.length === 0) {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  } else {
+    firstDigit += e.target.value;
+    display.innerText = firstDigit;
+    convertNum = parseFloat(firstDigit);
+  }
+  showCalc();
+});
 
 // enable player to select sum.
 
@@ -242,8 +202,8 @@ operateSum.addEventListener("click", (e) => {
     numbers.pop();
     numbers.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = "" // if something starts breaking it's due to clearing firstdigit and convertnum
+    firstDigit = "";
+    convertNum = ""; // if something starts breaking it's due to clearing firstdigit and convertnum
   } else if (
     currentNumber[1] === "-" ||
     currentNumber[1] === "x" ||
@@ -252,8 +212,8 @@ operateSum.addEventListener("click", (e) => {
     currentNumber.pop();
     currentNumber.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else {
     if (numbers.length >= 2) {
       numbers.push(convertNum);
@@ -371,8 +331,8 @@ operateSubtract.addEventListener("click", (e) => {
     numbers.push(e.target.value);
     //the issue is here. The second three is not being pushed in time
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else if (
     currentNumber[1] === "+" ||
     currentNumber[1] === "*" ||
@@ -381,8 +341,8 @@ operateSubtract.addEventListener("click", (e) => {
     currentNumber.pop();
     currentNumber.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else {
     if (numbers[1] === "-" || currentNumber[1] === "-") {
       if (numbers.length >= 2) {
@@ -631,10 +591,10 @@ operateMultiply.addEventListener("click", (e) => {
     numbers.pop();
     numbers.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
     console.log(firstDigit);
-    console.log(convertNum)
+    console.log(convertNum);
   } else if (
     currentNumber[1] === "-" ||
     currentNumber[1] === "+" ||
@@ -643,8 +603,8 @@ operateMultiply.addEventListener("click", (e) => {
     currentNumber.pop();
     currentNumber.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else {
     if (numbers.length >= 2) {
       numbers.push(convertNum);
@@ -759,12 +719,12 @@ operateMultiply.addEventListener("click", (e) => {
 operateDivide.addEventListener("click", (e) => {
   // if I want things to be changed, get rid of this first if else if condition. Might break other things.
   if (numbers[1] === "-" || numbers[1] === "*" || numbers[1] === "+") {
-      // if this stops working, just comment out the code and make it nothing
+    // if this stops working, just comment out the code and make it nothing
     numbers.pop();
     numbers.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else if (
     currentNumber[1] === "-" ||
     currentNumber[1] === "*" ||
@@ -773,8 +733,8 @@ operateDivide.addEventListener("click", (e) => {
     currentNumber.pop();
     currentNumber.push(e.target.value);
     display.innerText = e.target.value;
-    firstDigit = ""
-    convertNum = ""
+    firstDigit = "";
+    convertNum = "";
   } else {
     if (numbers.length >= 2) {
       numbers.push(convertNum);
@@ -1016,8 +976,8 @@ remove.addEventListener("click", (e) => {
     // 2/22
     display.innerText = numbers;
   } else if (currentNumber.length >= 2) {
-    console.log(numbers)
-    console.log(currentNumber)
+    console.log(numbers);
+    console.log(currentNumber);
     currentNumber.pop();
 
     display.innerText = currentNumber;
@@ -1157,33 +1117,6 @@ function negativeFindAndRemove() {
   }
 }
 
-// 1+1 = -- works
-// 1+1 =
-
-// 2 + 2 +
-
-// 32 - 32 - - -- doesn't work
-// 32 + 32 + + -- doesn't work
-
-/*function showCalc() {
-    if (currentNumber.length === 2 && typeof currentNumber === "number"){
-        numbersCalc.innerText = `${currentNumber.join(" ")} ${convertNum} =`;
-        console.log(`it went through first condition`)
-        console.log(`convertNum is ${convertNum}`);
-        console.log(`typeof convertNum.length is ${typeof convertNum}`);
-        console.log(currentNumber)
-    } else if (currentNumber.length === 2 && typeof currentNumber === "string"){
-        numbersCalc.innerText = `${currentNumber.join(" ")}`;
-    } else if (numbers.length === 2){
-        numbersCalc.innerText = numbers.join(" ");
-        console.log(convertNum)
-    } else if (theViewFinal.length != 0) {
-        numbersCalc.innerText = `${theViewFinal} =`;
-    } else {
-        console.log(`we got elsed`)
-    }
-}*/
-
 function showCalc() {
   if (currentNumber.length === 2) {
     numbersCalc.innerText = `${currentNumber.join(" ")}`;
@@ -1201,139 +1134,450 @@ function showCalc() {
   }
 }
 
-/*function showCalc() {
-  // get it to show an =
-  if (numbers.length >= 1) {
-    numbersWithoutCommas = numbers.join(" ");
-    finalMiniDisplay = `${numbersWithoutCommas}`;
-    numbersCalc.innerText = finalMiniDisplay;
-    theHolder = `${numbersWithoutCommas} ${convertNum} =`;
-    numbersHolder = numbers;
-  } else if (numbers.length === 0 && currentNumber.length === 1) {
-    numbersWithoutCommas = numbers.join(" ");
-    finalMiniDisplay = theHolder;
-    numbersCalc.innerText = finalMiniDisplay;
-    //theHolder = "";
-    finalMiniDisplay = "";
-  } else if (currentNumber.length === 2 && typeof convertNum === "number") {
-    currentNumberCalc.innerText = ""; // 2/20/22 just added
-    numbersCalc.innerText = ""; // 2/20/22 just added -- the currentnum or latest num is not updating
-    finalMiniDisplay = "";
-    finalMiniDisplayTwo = "";
-    currentNumberWithoutCommas = currentNumber.join(" ");
-    numbersCalc.innerText = currentNumberWithoutCommas;
-    theHolder = convertNum.toString();
-  } else if (
-      // fix this
-    currentNumber.length === 2 &&
-    typeof latestNumber != "number" &&
-    numbersHolder.length != 0
-  ) {
-    // 2/20/22 && numbersHolder.length != 0 condition was just added. You'll likely have to add aneother else/if with the oppsite. Need to clear numberscalc/currentnumberscalc
-    currentNumberWithoutCommas = currentNumberWithoutCommas = currentNumber.join(" ");;
-    numbersWithoutCommas = numbersWithoutCommas = numbers.join(" ");
-    numbersCalc.innerText = `${numbersWithoutCommas} =`;
-    numbersWithoutCommas = ""; // 2/20/22 this was just added
-    theHolder = convertNum.toString();
-    numbersHolder = "";
-  } else if (currentNumber.length === 2 && typeof latestNumber === "number") {
-    numbersWithoutCommas = numbers.join(" ");
-    numbersCalc.innerText = `${currentNumberWithoutCommas} ${theHolder} =`;
-    theHolder = convertNum.toString();
-    numbersHolder = "";
-  } else if (currentNumber.length >= 2) {
-    numbersCalc.innerText = "";
-    currentNumberWithoutCommas = currentNumber.join(" ");
-    finalMiniDisplayTwo = `${currentNumberWithoutCommas} ${convertNum}`;
-    if (finalMiniDisplayTwo.length === 5) {
-      theHolder = convertNum;
-      currentNumberCalc.innerText = currentNumberWithoutCommas;
-      currentNumberWithoutCommas = "";
-    } else {
-      finalMiniDisplayTwo = `${currentNumberWithoutCommas} ${convertNum}`;
-      currentNumberCalc.innerText = finalMiniDisplayTwo;
-    }
-  } else {
-  }
-}*/
+// adding keyboard support for all numbers and operations
+document.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.key === "." && display.innerText != ".") {
+      e.target.value = ".";
+      if (
+        currentNumber.includes(".") ||
+        numbers.includes(".") ||
+        firstDigit.includes(".")
+      ) {
+      } else if (currentNumber.length === 0) {
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      // checks and removes duplicate decimals
+      decimalFindAndRemove();
+      checkDisplayLength();
+    } else if (e.key === "1") {
+      if (currentNumber.length === 0) {
+        e.target.value = "1";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "1";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "2") {
+      if (currentNumber.length === 0) {
+        e.target.value = "2";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "2";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "3") {
+      if (currentNumber.length === 0) {
+        e.target.value = "3";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "3";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "4") {
+      if (currentNumber.length === 0) {
+        e.target.value = "4";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "4";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "5") {
+      if (currentNumber.length === 0) {
+        e.target.value = "5";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "5";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "6") {
+      if (currentNumber.length === 0) {
+        e.target.value = "6";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "6";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "7") {
+      if (currentNumber.length === 0) {
+        e.target.value = "7";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "7";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "8") {
+      if (currentNumber.length === 0) {
+        e.target.value = "8";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "8";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "9") {
+      if (currentNumber.length === 0) {
+        e.target.value = "9";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "9";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "0") {
+      if (currentNumber.length === 0) {
+        e.target.value = "0";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      } else {
+        e.target.value = "0";
+        firstDigit += e.target.value;
+        display.innerText = firstDigit;
+        convertNum = parseFloat(firstDigit);
+      }
+      showCalc();
+      // always add display length here
+      checkDisplayLength();
+    } else if (e.key === "Backspace") {
+      if (firstDigit.length > 1) {
+        deleteNum = firstDigit.substring(0, firstDigit.length - 1);
+        firstDigit = deleteNum;
 
-// if numbers length is greater than or equal to one
-// second display shows numbers
+        display.innerText = firstDigit;
 
-/*function showCalc() {
-  // get it to show an =
-  if (numbers.length >= 1) {
-      console.log(numbers);
-      console.log(currentNumber);
-    let showAll = `${convertNum}`;
+        convertNum = parseFloat(firstDigit);
+      } else if (
+        numbers[1] === "+" ||
+        numbers[1] === "-" ||
+        numbers[1] === "*" ||
+        numbers[1] === "/"
+      ) {
+        numbers.pop();
+        // 2/22
+        display.innerText = numbers;
+      } else if (currentNumber.length >= 2) {
+        console.log(numbers);
+        console.log(currentNumber);
+        currentNumber.pop();
 
-    let numbersString = numbers.toString();
-    let numbersStringWithoutCommas = numbersString.replace(/,/g, " ");
-    let finalMiniDisplay = `${numbersStringWithoutCommas} ${convertNum}`;
-    if (finalMiniDisplay.length === 5) {
-      finalMiniDisplay = `${numbersStringWithoutCommas} ${convertNum} =`;
-      numbersCalc.innerText = finalMiniDisplay;
-    } else {
-      finalMiniDisplay = `${numbersStringWithoutCommas} ${convertNum}`;
-      numbersCalc.innerText = finalMiniDisplay;
-    }
-  } else if (currentNumber.length >= 1) {
-    console.log(numbers);
-    console.log(currentNumber);
-    numbersCalc.innerText = "";
-
-    let currentNumberString = currentNumber.toString();
-    let currentNumberWithoutCommas = currentNumberString.replace(/,/g, " ");
-    let finalMiniDisplayTwo = `${currentNumberWithoutCommas} ${convertNum}`;
-    if (finalMiniDisplayTwo.length === 5) {
-      finalMiniDisplayTwo = `${currentNumberWithoutCommas} ${convertNum} =`;
-      currentNumberCalc.innerText = finalMiniDisplayTwo;
-    } else {
-      finalMiniDisplayTwo = `${currentNumberWithoutCommas} ${convertNum}`;
-      currentNumberCalc.innerText = finalMiniDisplayTwo;
-    }
-  }
-}*/
-
-// use switch cases for this instead. Start with 1 + 1
-document.addEventListener('keydown', (e) => {
-    if (e.key === "4"){
-            if (currentNumber.length === 0) {
-                e.target.value = "4";
-              firstDigit += e.target.value;
-              display.innerText = firstDigit;
-              convertNum = parseFloat(firstDigit);
-            } else {
-                e.target.value = "4";
-              firstDigit += e.target.value;
-              display.innerText = firstDigit;
-              convertNum = parseFloat(firstDigit);
-            }
-            showCalc();
-            // always add display length here
-            checkDisplayLength();
-    } else if (e.key === "-") {
-        e.target.value = "-"
-        console.log(e.key);
-        if (numbers[1] === "+" || numbers[1] === "*" || numbers[1] === "/") {
+        display.innerText = currentNumber;
+        if (currentNumber.length === 0) {
+          display.innerText = 0;
+        }
+      }
+      showCalc();
+    } else if (e.key === "Enter") {
+      if (
+        numbers.includes("+") === true ||
+        currentNumber.includes("+") === true ||
+        numbers.includes("-") === true ||
+        currentNumber.includes("-") === true ||
+        numbers.includes("*") === true ||
+        currentNumber.includes("*") === true ||
+        numbers.includes("/") === true ||
+        currentNumber.includes("/") === true
+      ) {
+        if (currentNumber.length === 0) {
+          numbers.push(convertNum);
+          if (typeof numbers.at(-1) !== "number") {
+            display.innerText = numbers.at(0);
             numbers.pop();
-            numbers.push(e.target.value);
-            //the issue is here. The second three is not being pushed in time
-            display.innerText = e.target.value;
-            firstDigit = ""
-            convertNum = ""
-          } else if (
-            currentNumber[1] === "+" ||
-            currentNumber[1] === "*" ||
-            currentNumber[1] === "/"
-          ) {
+          } else {
+            if (operate(numbers) % 1 === 0) {
+              display.innerText = operate(numbers);
+              currentNumber.push(operate(numbers));
+              numbers = [];
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              // will need to replicate this for sum operations
+              displayNum = parseFloat(operate(numbers).toFixed(2));
+              if (displayNum % 1 === 0) {
+                displayNum.pop();
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              }
+            }
+          }
+        } else if (currentNumber.length === 1 || numbers.length === 1) {
+          alert("You already pressed equals! We'll clear things for you.");
+          display.innerText = 0;
+          firstDigit = "";
+          numbers = [];
+          currentNumber = [];
+          latestNumber = "";
+          convertNum = "";
+        } else {
+          currentNumber.push(convertNum);
+          if (typeof currentNumber.at(-1) !== "number") {
+            display.innerText = currentNumber.at(0);
             currentNumber.pop();
+          } else {
+            // will need to replicate this for sum. Might be wrong. Should pop if decimal ends in 0
+            if (operate(currentNumber) % 1 === 0) {
+              display.innerText = operate(currentNumber);
+              latestNumber = operate(currentNumber);
+              numbers = [];
+              currentNumber = [];
+              currentNumber.push(latestNumber);
+              latestNumber = "";
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(currentNumber).toFixed(2));
+              if (displayNum % 1 === 0) {
+                // this should likely be if last digital in display num is 0
+                displayNum.pop(); // this should be the substring method. seems to work though
+                display.innerText = displayNum;
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              }
+            }
+          }
+        }
+      }
+      showCalc();
+    } else if (e.key === "-") {
+      e.target.value = "-";
+      console.log(e.key);
+      if (numbers[1] === "+" || numbers[1] === "*" || numbers[1] === "/") {
+        numbers.pop();
+        numbers.push(e.target.value);
+        //the issue is here. The second three is not being pushed in time
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else if (
+        currentNumber[1] === "+" ||
+        currentNumber[1] === "*" ||
+        currentNumber[1] === "/"
+      ) {
+        currentNumber.pop();
+        currentNumber.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else {
+        if (numbers[1] === "-" || currentNumber[1] === "-") {
+          if (numbers.length >= 2) {
+            numbers.push(convertNum);
+            convertNum = "";
+            if (typeof numbers.at(-1) !== "number") {
+              display.innerText = e.target.value;
+              numbers.pop();
+            } else {
+              // need to replicate for second situation within sum
+              if (operate(numbers) % 1 === 0) {
+                convertNum = "";
+                display.innerText = operate(numbers);
+                currentNumber.push(operate(numbers));
+                currentNumber.push(e.target.value);
+                numbers = [];
+                firstDigit = "";
+                //convertNum = "";
+              } else {
+                displayNum = parseFloat(operate(numbers).toFixed(2));
+                if (displayNum % 1 === 0) {
+                  displayNum.pop();
+                  display.innerText = displayNum;
+                  currentNumber.push(displayNum);
+                  numbers = [];
+                  firstDigit = "";
+                } else {
+                  display.innerText = displayNum;
+                  currentNumber.push(displayNum);
+                  currentNumber.push(e.target.value);
+                  numbers = [];
+                  firstDigit = "";
+                  displayNum = "";
+                  convertNum = "";
+                }
+              }
+            }
+          } else if (currentNumber.length === 0) {
+            if (isNaN(convertNum) === true) {
+            } /*else if (convertNum === "") {
+                          // working here
+                          numbers.push(e.target.value);
+                          display.innerText = e.target.value;
+                        }*/ // ^^ likely need to add this
+            else {
+              numbers.push(convertNum);
+              if (typeof numbers.at(-1) !== "number") {
+                display.innerText = e.target.value;
+                numbers.pop();
+              } else {
+                convertNum = "";
+                display.innerText = e.target.value;
+                numbers.push(e.target.value);
+                firstDigit = "";
+              }
+            }
+          } else if (currentNumber.length > 1) {
+            currentNumber.push(convertNum);
+            if (typeof currentNumber.at(-1) !== "number") {
+              display.innerText = e.target.value;
+              currentNumber.pop();
+              // it's going to a different part of this function and going hawaywire by consistently clicking +
+            } else {
+              if (operate(currentNumber) % 1 === 0) {
+                currentNumber.push(e.target.value);
+                display.innerText = operate(currentNumber);
+                latestNumber = operate(currentNumber);
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(latestNumber);
+                currentNumber.push(e.target.value);
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                displayNum = parseFloat(operate(currentNumber).toFixed(2));
+                if (displayNum % 1 === 0) {
+                  //this code could be the same as the equals 'currentNumber'
+                  display.innerText = displayNum;
+                  numbers = [];
+                  currentNumber = [];
+                  currentNumber.push(displayNum);
+                  currentNumber.push(e.target.value);
+                  convertNum = "";
+                  firstDigit = "";
+                  displayNum = "";
+                } else {
+                  display.innerText = displayNum;
+                  numbers = [];
+                  currentNumber = [];
+                  currentNumber.push(displayNum);
+                  currentNumber.push(e.target.value);
+
+                  displayNum = "";
+                  firstDigit = "";
+                  convertNum = "";
+                  latestNumber = "";
+                }
+              }
+            }
+          } else {
+            display.innerText = e.target.value;
+            currentNumber.push(e.target.value);
+            firstDigit = "";
+            convertNum = "";
+          }
+        } else {
+          // comes through here
+          if (typeof numbers[0] === "number") {
+            numbers.push(e.target.value);
+            display.innerText = e.target.value;
+            // 2/17 -- should come through here
+            firstDigit = "";
+            convertNum = "";
+          } else if (typeof currentNumber[0] === "number") {
             currentNumber.push(e.target.value);
             display.innerText = e.target.value;
-            firstDigit = ""
-            convertNum = ""
+            firstDigit = "";
+            convertNum = "";
           } else {
-            if (numbers[1] === "-" || currentNumber[1] === "-") {
+            // what else goes in here?
+            if (typeof convertNum !== "number") {
+              if (currentNumber.length === 0) {
+                firstDigit += e.target.value;
+                display.innerText = firstDigit;
+                convertNum = parseFloat(firstDigit);
+              } else {
+                firstDigit += e.target.value;
+                display.innerText = firstDigit;
+                convertNum = parseFloat(firstDigit);
+              }
+              // checks and removes duplicate decimals
+              negativeFindAndRemove();
+            } else {
               if (numbers.length >= 2) {
                 numbers.push(convertNum);
                 convertNum = "";
@@ -1371,17 +1615,14 @@ document.addEventListener('keydown', (e) => {
                 }
               } else if (currentNumber.length === 0) {
                 if (isNaN(convertNum) === true) {
-                } /*else if (convertNum === "") {
-                          // working here
-                          numbers.push(e.target.value);
-                          display.innerText = e.target.value;
-                        }*/ // ^^ likely need to add this
-                else {
+                } else {
                   numbers.push(convertNum);
                   if (typeof numbers.at(-1) !== "number") {
                     display.innerText = e.target.value;
                     numbers.pop();
                   } else {
+                    // issue is here 2/23/22
+
                     convertNum = "";
                     display.innerText = e.target.value;
                     numbers.push(e.target.value);
@@ -1423,7 +1664,7 @@ document.addEventListener('keydown', (e) => {
                       currentNumber = [];
                       currentNumber.push(displayNum);
                       currentNumber.push(e.target.value);
-        
+
                       displayNum = "";
                       firstDigit = "";
                       convertNum = "";
@@ -1437,138 +1678,482 @@ document.addEventListener('keydown', (e) => {
                 firstDigit = "";
                 convertNum = "";
               }
+            }
+          }
+        }
+      }
+      showCalc();
+    } else if (e.shiftKey === true && e.key === "+") {
+      e.target.value = "+";
+      if (numbers[1] === "-" || numbers[1] === "x" || numbers[1] === "/") {
+        numbers.pop();
+        numbers.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = ""; // if something starts breaking it's due to clearing firstdigit and convertnum
+      } else if (
+        currentNumber[1] === "-" ||
+        currentNumber[1] === "x" ||
+        currentNumber[1] === "/"
+      ) {
+        currentNumber.pop();
+        currentNumber.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else {
+        if (numbers.length >= 2) {
+          numbers.push(convertNum);
+
+          convertNum = "";
+          if (typeof numbers.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            numbers.pop();
+          } else {
+            // need to replicate for second situation within sum
+            if (operate(numbers) % 1 === 0) {
+              convertNum = "";
+              display.innerText = operate(numbers);
+              currentNumber.push(operate(numbers));
+              currentNumber.push(e.target.value);
+              numbers = [];
+              firstDigit = "";
+              convertNum = "";
             } else {
-              // comes through here
-              if (typeof numbers[0] === "number") {
-                numbers.push(e.target.value);
-                display.innerText = e.target.value;
-                // 2/17 -- should come through here
-                firstDigit = "";
-                convertNum = "";
-              } else if (typeof currentNumber[0] === "number") {
-                currentNumber.push(e.target.value);
-                display.innerText = e.target.value;
+              displayNum = parseFloat(operate(numbers).toFixed(2));
+              if (displayNum % 1 === 0) {
+                displayNum.pop();
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
                 firstDigit = "";
                 convertNum = "";
               } else {
-                // what else goes in here?
-                if (typeof convertNum !== "number") {
-                  if (currentNumber.length === 0) {
-                    firstDigit += e.target.value;
-                    display.innerText = firstDigit;
-                    convertNum = parseFloat(firstDigit);
-                  } else {
-                    firstDigit += e.target.value;
-                    display.innerText = firstDigit;
-                    convertNum = parseFloat(firstDigit);
-                  }
-                  // checks and removes duplicate decimals
-                  negativeFindAndRemove();
-                } else {
-                  if (numbers.length >= 2) {
-                    numbers.push(convertNum);
-                    convertNum = "";
-                    if (typeof numbers.at(-1) !== "number") {
-                      display.innerText = e.target.value;
-                      numbers.pop();
-                    } else {
-                      // need to replicate for second situation within sum
-                      if (operate(numbers) % 1 === 0) {
-                        convertNum = "";
-                        display.innerText = operate(numbers);
-                        currentNumber.push(operate(numbers));
-                        currentNumber.push(e.target.value);
-                        numbers = [];
-                        firstDigit = "";
-                        //convertNum = "";
-                      } else {
-                        displayNum = parseFloat(operate(numbers).toFixed(2));
-                        if (displayNum % 1 === 0) {
-                          displayNum.pop();
-                          display.innerText = displayNum;
-                          currentNumber.push(displayNum);
-                          numbers = [];
-                          firstDigit = "";
-                        } else {
-                          display.innerText = displayNum;
-                          currentNumber.push(displayNum);
-                          currentNumber.push(e.target.value);
-                          numbers = [];
-                          firstDigit = "";
-                          displayNum = "";
-                          convertNum = "";
-                        }
-                      }
-                    }
-                  } else if (currentNumber.length === 0) {
-                    if (isNaN(convertNum) === true) {
-                    } else {
-                      numbers.push(convertNum);
-                      if (typeof numbers.at(-1) !== "number") {
-                        display.innerText = e.target.value;
-                        numbers.pop();
-                      } else {
-                        // issue is here 2/23/22
-        
-                        convertNum = "";
-                        display.innerText = e.target.value;
-                        numbers.push(e.target.value);
-                        firstDigit = "";
-                      }
-                    }
-                  } else if (currentNumber.length > 1) {
-                    currentNumber.push(convertNum);
-                    if (typeof currentNumber.at(-1) !== "number") {
-                      display.innerText = e.target.value;
-                      currentNumber.pop();
-                      // it's going to a different part of this function and going hawaywire by consistently clicking +
-                    } else {
-                      if (operate(currentNumber) % 1 === 0) {
-                        currentNumber.push(e.target.value);
-                        display.innerText = operate(currentNumber);
-                        latestNumber = operate(currentNumber);
-                        numbers = [];
-                        currentNumber = [];
-                        currentNumber.push(latestNumber);
-                        currentNumber.push(e.target.value);
-                        firstDigit = "";
-                        convertNum = "";
-                      } else {
-                        displayNum = parseFloat(operate(currentNumber).toFixed(2));
-                        if (displayNum % 1 === 0) {
-                          //this code could be the same as the equals 'currentNumber'
-                          display.innerText = displayNum;
-                          numbers = [];
-                          currentNumber = [];
-                          currentNumber.push(displayNum);
-                          currentNumber.push(e.target.value);
-                          convertNum = "";
-                          firstDigit = "";
-                          displayNum = "";
-                        } else {
-                          display.innerText = displayNum;
-                          numbers = [];
-                          currentNumber = [];
-                          currentNumber.push(displayNum);
-                          currentNumber.push(e.target.value);
-        
-                          displayNum = "";
-                          firstDigit = "";
-                          convertNum = "";
-                          latestNumber = "";
-                        }
-                      }
-                    }
-                  } else {
-                    display.innerText = e.target.value;
-                    currentNumber.push(e.target.value);
-                    firstDigit = "";
-                    convertNum = "";
-                  }
-                }
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                numbers = [];
+                firstDigit = "";
+                displayNum = "";
+                convertNum = "";
               }
             }
           }
-          showCalc();
+        } else if (currentNumber.length === 0) {
+          if (isNaN(convertNum) === true) {
+          } else if (convertNum === "") {
+            // working here
+            numbers.push(e.target.value);
+            display.innerText = e.target.value;
+          } else {
+            // working here
+            numbers.push(convertNum);
+            if (typeof numbers.at(-1) !== "number") {
+              display.innerText = e.target.value;
+              numbers.pop();
+            } else {
+              convertNum = "";
+              display.innerText = e.target.value;
+              numbers.push(e.target.value);
+              firstDigit = "";
+            }
+          }
+        } else if (currentNumber.length > 1) {
+          currentNumber.push(convertNum);
+          if (typeof currentNumber.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            currentNumber.pop();
+          } else {
+            if (operate(currentNumber) % 1 === 0) {
+              currentNumber.push(e.target.value);
+              display.innerText = operate(currentNumber);
+              latestNumber = operate(currentNumber);
+              numbers = [];
+              currentNumber = [];
+              currentNumber.push(latestNumber);
+              currentNumber.push(e.target.value);
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(currentNumber).toFixed(2));
+              if (displayNum % 1 === 0) {
+                //this code could be the same as the equals 'currentNumber'
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                convertNum = "";
+                firstDigit = "";
+                displayNum = "";
+              } else {
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+
+                displayNum = "";
+                firstDigit = "";
+                convertNum = "";
+                latestNumber = "";
+              }
+            }
+          }
+        } else {
+          display.innerText = e.target.value;
+          currentNumber.push(e.target.value);
+          firstDigit = "";
+          convertNum = "";
+        }
+      }
+      showCalc();
+    } else if (e.shiftKey === true && e.key === "*") {
+      e.target.value = "*";
+      if (numbers[1] === "-" || numbers[1] === "+" || numbers[1] === "/") {
+        numbers.pop();
+        numbers.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+        console.log(firstDigit);
+        console.log(convertNum);
+      } else if (
+        currentNumber[1] === "-" ||
+        currentNumber[1] === "+" ||
+        currentNumber[1] === "/"
+      ) {
+        currentNumber.pop();
+        currentNumber.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else {
+        if (numbers.length >= 2) {
+          numbers.push(convertNum);
+
+          convertNum = "";
+          if (typeof numbers.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            numbers.pop();
+          } else {
+            // need to replicate for second situation within sum
+            if (operate(numbers) % 1 === 0) {
+              convertNum = "";
+              display.innerText = operate(numbers);
+              currentNumber.push(operate(numbers));
+              currentNumber.push(e.target.value);
+              numbers = [];
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(numbers).toFixed(2));
+              if (displayNum % 1 === 0) {
+                displayNum.pop();
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                numbers = [];
+                firstDigit = "";
+                displayNum = "";
+                convertNum = "";
+              }
+            }
+          }
+        } else if (currentNumber.length === 0) {
+          if (isNaN(convertNum) === true) {
+          } else if (convertNum === "") {
+            // working here
+            numbers.push(e.target.value);
+            display.innerText = e.target.value;
+          } else {
+            // working here
+            numbers.push(convertNum);
+            if (typeof numbers.at(-1) !== "number") {
+              display.innerText = e.target.value;
+              numbers.pop();
+            } else {
+              convertNum = "";
+              display.innerText = e.target.value;
+              numbers.push(e.target.value);
+              firstDigit = "";
+            }
+          }
+        } else if (currentNumber.length > 1) {
+          currentNumber.push(convertNum);
+          if (typeof currentNumber.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            currentNumber.pop();
+          } else {
+            if (operate(currentNumber) % 1 === 0) {
+              currentNumber.push(e.target.value);
+              display.innerText = operate(currentNumber);
+              latestNumber = operate(currentNumber);
+              numbers = [];
+              currentNumber = [];
+              currentNumber.push(latestNumber);
+              currentNumber.push(e.target.value);
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(currentNumber).toFixed(2));
+              if (displayNum % 1 === 0) {
+                //this code could be the same as the equals 'currentNumber'
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                convertNum = "";
+                firstDigit = "";
+                displayNum = "";
+              } else {
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+
+                displayNum = "";
+                firstDigit = "";
+                convertNum = "";
+                latestNumber = "";
+              }
+            }
+          }
+        } else {
+          display.innerText = e.target.value;
+          currentNumber.push(e.target.value);
+          firstDigit = "";
+          convertNum = "";
+        }
+      }
+      showCalc();
+    } else if (e.key === "/") {
+      e.target.value = "/";
+      if (numbers[1] === "-" || numbers[1] === "*" || numbers[1] === "+") {
+        // if this stops working, just comment out the code and make it nothing
+        numbers.pop();
+        numbers.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else if (
+        currentNumber[1] === "-" ||
+        currentNumber[1] === "*" ||
+        currentNumber[1] === "+"
+      ) {
+        currentNumber.pop();
+        currentNumber.push(e.target.value);
+        display.innerText = e.target.value;
+        firstDigit = "";
+        convertNum = "";
+      } else {
+        if (numbers.length >= 2) {
+          numbers.push(convertNum);
+
+          convertNum = "";
+          if (typeof numbers.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            numbers.pop();
+          } else {
+            // need to replicate for second situation within sum
+            if (operate(numbers) % 1 === 0) {
+              convertNum = "";
+              display.innerText = operate(numbers);
+              currentNumber.push(operate(numbers));
+              currentNumber.push(e.target.value);
+              numbers = [];
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(numbers).toFixed(2));
+              if (displayNum % 1 === 0) {
+                displayNum.pop();
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                numbers = [];
+                firstDigit = "";
+                displayNum = "";
+                convertNum = "";
+              }
+            }
+          }
+        } else if (currentNumber.length === 0) {
+          if (isNaN(convertNum) === true) {
+          } else if (convertNum === "") {
+            // working here
+            numbers.push(e.target.value);
+            display.innerText = e.target.value;
+          } else {
+            // working here
+            numbers.push(convertNum);
+            if (typeof numbers.at(-1) !== "number") {
+              display.innerText = e.target.value;
+              numbers.pop();
+            } else {
+              convertNum = "";
+              display.innerText = e.target.value;
+              numbers.push(e.target.value);
+              firstDigit = "";
+            }
+          }
+        } else if (currentNumber.length > 1) {
+          currentNumber.push(convertNum);
+          if (typeof currentNumber.at(-1) !== "number") {
+            display.innerText = e.target.value;
+            currentNumber.pop();
+          } else {
+            if (operate(currentNumber) % 1 === 0) {
+              currentNumber.push(e.target.value);
+              display.innerText = operate(currentNumber);
+              latestNumber = operate(currentNumber);
+              numbers = [];
+              currentNumber = [];
+              currentNumber.push(latestNumber);
+              currentNumber.push(e.target.value);
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(currentNumber).toFixed(2));
+              if (displayNum % 1 === 0) {
+                //this code could be the same as the equals 'currentNumber'
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+                convertNum = "";
+                firstDigit = "";
+                displayNum = "";
+              } else {
+                display.innerText = displayNum;
+                numbers = [];
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                currentNumber.push(e.target.value);
+
+                displayNum = "";
+                firstDigit = "";
+                convertNum = "";
+                latestNumber = "";
+              }
+            }
+          }
+        } else {
+          display.innerText = e.target.value;
+          currentNumber.push(e.target.value);
+          firstDigit = "";
+          convertNum = "";
+        }
+      }
+      showCalc();
+    } else if (e.key === "=") {
+      e.target.value = "=";
+      if (
+        numbers.includes("+") === true ||
+        currentNumber.includes("+") === true ||
+        numbers.includes("-") === true ||
+        currentNumber.includes("-") === true ||
+        numbers.includes("*") === true ||
+        currentNumber.includes("*") === true ||
+        numbers.includes("/") === true ||
+        currentNumber.includes("/") === true
+      ) {
+        if (currentNumber.length === 0) {
+          numbers.push(convertNum);
+          if (typeof numbers.at(-1) !== "number") {
+            display.innerText = numbers.at(0);
+            numbers.pop();
+          } else {
+            if (operate(numbers) % 1 === 0) {
+              display.innerText = operate(numbers);
+              currentNumber.push(operate(numbers));
+              numbers = [];
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              // will need to replicate this for sum operations
+              displayNum = parseFloat(operate(numbers).toFixed(2));
+              if (displayNum % 1 === 0) {
+                displayNum.pop();
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              }
+            }
+          }
+        } else if (currentNumber.length === 1 || numbers.length === 1) {
+          alert("You already pressed equals! We'll clear things for you.");
+          display.innerText = 0;
+          firstDigit = "";
+          numbers = [];
+          currentNumber = [];
+          latestNumber = "";
+          convertNum = "";
+        } else {
+          currentNumber.push(convertNum);
+          if (typeof currentNumber.at(-1) !== "number") {
+            display.innerText = currentNumber.at(0);
+            currentNumber.pop();
+          } else {
+            // will need to replicate this for sum. Might be wrong. Should pop if decimal ends in 0
+            if (operate(currentNumber) % 1 === 0) {
+              display.innerText = operate(currentNumber);
+              latestNumber = operate(currentNumber);
+              numbers = [];
+              currentNumber = [];
+              currentNumber.push(latestNumber);
+              latestNumber = "";
+              firstDigit = "";
+              convertNum = "";
+            } else {
+              displayNum = parseFloat(operate(currentNumber).toFixed(2));
+              if (displayNum % 1 === 0) {
+                // this should likely be if last digital in display num is 0
+                displayNum.pop(); // this should be the substring method. seems to work though
+                display.innerText = displayNum;
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              } else {
+                display.innerText = displayNum;
+                currentNumber = [];
+                currentNumber.push(displayNum);
+                numbers = [];
+                firstDigit = "";
+                convertNum = "";
+              }
+            }
+          }
+        }
+      }
+      showCalc();
+    } else {
     }
-  }, false);
+  },
+  false
+);
