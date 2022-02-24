@@ -57,6 +57,7 @@ decimal.addEventListener("click", (e) => {
   }
   // checks and removes duplicate decimals
   decimalFindAndRemove();
+  showCalc();
   checkDisplayLength();
 });
 
@@ -73,6 +74,7 @@ zero.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 one.addEventListener("click", (e) => {
@@ -86,6 +88,7 @@ one.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 two.addEventListener("click", (e) => {
@@ -99,6 +102,7 @@ two.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 three.addEventListener("click", (e) => {
@@ -112,6 +116,7 @@ three.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 four.addEventListener("click", (e) => {
@@ -125,7 +130,6 @@ four.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
-  // always add display length here
   checkDisplayLength();
 });
 
@@ -140,6 +144,7 @@ five.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 six.addEventListener("click", (e) => {
@@ -153,6 +158,7 @@ six.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 seven.addEventListener("click", (e) => {
@@ -166,6 +172,7 @@ seven.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 eight.addEventListener("click", (e) => {
@@ -179,6 +186,7 @@ eight.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
 nine.addEventListener("click", (e) => {
@@ -192,9 +200,10 @@ nine.addEventListener("click", (e) => {
     convertNum = parseFloat(firstDigit);
   }
   showCalc();
+  checkDisplayLength();
 });
 
-// enable player to select sum.
+// enable addition
 
 operateSum.addEventListener("click", (e) => {
   // this first if statement could also be 'do nothing' if these conditions match
@@ -320,10 +329,11 @@ operateSum.addEventListener("click", (e) => {
       convertNum = "";
     }
   }
+  showCalc();
   checkDisplayLength();
 });
 
-// enable to subtract and use negative numbers
+// enable subtraction and negative numbers
 
 operateSubtract.addEventListener("click", (e) => {
   if (numbers[1] === "+" || numbers[1] === "*" || numbers[1] === "/") {
@@ -581,9 +591,10 @@ operateSubtract.addEventListener("click", (e) => {
     }
   }
   showCalc();
+  checkDisplayLength();
 });
 
-// enable player to select multiply (x)
+// enable multiplication
 
 operateMultiply.addEventListener("click", (e) => {
   // this first if statement could also be 'do nothing' if these conditions match
@@ -593,8 +604,6 @@ operateMultiply.addEventListener("click", (e) => {
     display.innerText = e.target.value;
     firstDigit = "";
     convertNum = "";
-    console.log(firstDigit);
-    console.log(convertNum);
   } else if (
     currentNumber[1] === "-" ||
     currentNumber[1] === "+" ||
@@ -712,14 +721,13 @@ operateMultiply.addEventListener("click", (e) => {
     }
   }
   showCalc();
+  checkDisplayLength();
 });
 
-// enable player to divide
+// enable division
 
 operateDivide.addEventListener("click", (e) => {
-  // if I want things to be changed, get rid of this first if else if condition. Might break other things.
   if (numbers[1] === "-" || numbers[1] === "*" || numbers[1] === "+") {
-    // if this stops working, just comment out the code and make it nothing
     numbers.pop();
     numbers.push(e.target.value);
     display.innerText = e.target.value;
@@ -744,7 +752,6 @@ operateDivide.addEventListener("click", (e) => {
         display.innerText = e.target.value;
         numbers.pop();
       } else {
-        // need to replicate for second situation within sum
         if (operate(numbers) % 1 === 0) {
           convertNum = "";
           display.innerText = operate(numbers);
@@ -842,9 +849,10 @@ operateDivide.addEventListener("click", (e) => {
     }
   }
   showCalc();
+  checkDisplayLength();
 });
 
-// enable player to select equals
+// enable user to select equals
 
 operateEquals.addEventListener("click", (e) => {
   if (
@@ -935,10 +943,11 @@ operateEquals.addEventListener("click", (e) => {
       }
     }
   }
+  showCalc();
   checkDisplayLength();
 });
 
-//enable the player to select clear
+//enable the user to select clear
 clear.addEventListener("click", (e) => {
   display.style.fontSize = "60px";
   display.innerText = 0;
@@ -953,7 +962,7 @@ clear.addEventListener("click", (e) => {
   theViewFinal = "";
 });
 
-//enable the player to select remove
+//enable the user to select remove (delete)
 remove.addEventListener("click", (e) => {
   // get rid of two decimals in a row
 
@@ -975,8 +984,6 @@ remove.addEventListener("click", (e) => {
     // 2/22
     display.innerText = numbers;
   } else if (currentNumber.length >= 2) {
-    console.log(numbers);
-    console.log(currentNumber);
     currentNumber.pop();
 
     display.innerText = currentNumber;
@@ -1000,9 +1007,6 @@ const operate = function ([num1, operator, num2]) {
     return multiply(num1, num2);
   } else {
     location.reload();
-    console.log(numbers);
-    console.log(currentNumber);
-    console.log(convertNum);
   }
 };
 
@@ -1043,10 +1047,14 @@ const multiply = function (num1, num2) {
 // function to divide two numbers
 
 const divide = function (num1, num2) {
-  if (num2 === 0) {
-    alert(
-      `Earth will be swallowed by a black hole if you divide by zero. Try something else.`
-    );
+  if (num2 !== 0) {
+    theView = [];
+    theViewFinal = "";
+    theView = [num1, "/", num2];
+    theViewFinal = theView.join(" ");
+
+    return num1 / num2;
+  } else {
     display.innerText = 0;
     firstDigit = "";
     numbers = [];
@@ -1054,14 +1062,9 @@ const divide = function (num1, num2) {
     latestNumber = "";
     convertNum = "";
     displayNum = "";
-    return;
-  } else {
-    theView = [];
-    theViewFinal = "";
-    theView = [num1, "/", num2];
-    theViewFinal = theView.join(" ");
-
-    return num1 / num2;
+    return alert(
+      `Earth will be swallowed by a black hole if you divide by zero. Try something else.`
+    );
   }
 };
 
@@ -1069,14 +1072,6 @@ const divide = function (num1, num2) {
 function checkDisplayLength() {
   if (display.innerText.length >= 13 && display.innerText.length < 15) {
     display.style.fontSize = "50px";
-    /*alert(`You're breaking the calc! 13-digits max, please.`);
-    display.innerText = 0;
-    firstDigit = "";
-    numbers = [];
-    currentNumber = [];
-    latestNumber = "";
-    convertNum = "";
-    displayNum = "";*/
   } else if (display.innerText.length >= 15) {
     alert(`You're breaking the calc! 14-digits max, please.`);
     //location.reload()
@@ -1115,17 +1110,12 @@ function negativeFindAndRemove() {
     }
   }
 }
-// show the minidisplay on top of calc
+// show the minidisplay (equation) on top of calc
 function showCalc() {
   if (currentNumber.length === 2) {
     numbersCalc.innerText = `${currentNumber.join(" ")}`;
-    console.log(`it went through first condition`);
-    console.log(`convertNum is ${convertNum}`);
-    console.log(`typeof convertNum.length is ${typeof convertNum}`);
-    console.log(currentNumber);
   } else if (numbers.length === 2) {
     numbersCalc.innerText = numbers.join(" ");
-    console.log(convertNum);
   } else if (theViewFinal.length != 0) {
     numbersCalc.innerText = `${theViewFinal} =`;
   } else {
@@ -1169,7 +1159,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "2") {
       if (currentNumber.length === 0) {
@@ -1184,7 +1173,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "3") {
       if (currentNumber.length === 0) {
@@ -1199,7 +1187,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "4") {
       if (currentNumber.length === 0) {
@@ -1214,7 +1201,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "5") {
       if (currentNumber.length === 0) {
@@ -1229,7 +1215,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "6") {
       if (currentNumber.length === 0) {
@@ -1244,7 +1229,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "7") {
       if (currentNumber.length === 0) {
@@ -1259,7 +1243,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "8") {
       if (currentNumber.length === 0) {
@@ -1274,7 +1257,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "9") {
       if (currentNumber.length === 0) {
@@ -1289,7 +1271,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "0") {
       if (currentNumber.length === 0) {
@@ -1304,7 +1285,6 @@ document.addEventListener(
         convertNum = parseFloat(firstDigit);
       }
       showCalc();
-      // always add display length here
       checkDisplayLength();
     } else if (e.key === "Backspace") {
       if (firstDigit.length > 1) {
@@ -1324,8 +1304,6 @@ document.addEventListener(
         // 2/22
         display.innerText = numbers;
       } else if (currentNumber.length >= 2) {
-        console.log(numbers);
-        console.log(currentNumber);
         currentNumber.pop();
 
         display.innerText = currentNumber;
@@ -1426,7 +1404,7 @@ document.addEventListener(
       showCalc();
     } else if (e.key === "-") {
       e.target.value = "-";
-      console.log(e.key);
+
       if (numbers[1] === "+" || numbers[1] === "*" || numbers[1] === "/") {
         numbers.pop();
         numbers.push(e.target.value);
@@ -1815,8 +1793,6 @@ document.addEventListener(
         display.innerText = e.target.value;
         firstDigit = "";
         convertNum = "";
-        console.log(firstDigit);
-        console.log(convertNum);
       } else if (
         currentNumber[1] === "-" ||
         currentNumber[1] === "+" ||
@@ -2165,9 +2141,9 @@ document.addEventListener(
       theView = [];
       theViewFinal = "";
     } else {
-      console.log(e.key);
-      console.log(e.shiftKey);
     }
+    showCalc();
+    checkDisplayLength();
   },
   false
 );

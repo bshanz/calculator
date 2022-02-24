@@ -1,5 +1,5 @@
 body {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 0;
@@ -12,7 +12,6 @@ body {
 }
 
 .full-container {
-  /*background-color: #eee;*/
   background: rgb(2, 0, 36);
   background: radial-gradient(
     circle,
@@ -86,8 +85,6 @@ body {
   margin-right: 4px;
 }
 
-/*create clases for left and right buttons if I want to fix the 1-2px margin issue*/
-
 .delete {
   background-color: white;
   display: flex;
@@ -104,7 +101,6 @@ body {
 
 .clear:hover,
 .delete:hover {
-  /*background-color: cornflowerblue*/
   background: rgb(0, 212, 255);
   background: radial-gradient(
     circle,
@@ -123,7 +119,6 @@ body {
 }
 
 .button {
-  /*to fix, change border to 'solid' and remove height*/
   background-color: white;
   display: flex;
   flex-wrap: wrap;
@@ -141,7 +136,6 @@ body {
 }
 
 .button:hover {
-  /*background-color: cornflowerblue*/
   background: rgb(0, 212, 255);
   background: radial-gradient(
     circle,
@@ -150,4 +144,15 @@ body {
     rgba(2, 0, 36, 1) 99%
   );
   color: white;
+}
+
+.name {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.name-two {
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: bold;
 }
