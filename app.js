@@ -320,7 +320,7 @@ operateSum.addEventListener("click", (e) => {
       convertNum = "";
     }
   }
-  showCalc();
+  checkDisplayLength();
 });
 
 // enable to subtract and use negative numbers
@@ -845,7 +845,6 @@ operateDivide.addEventListener("click", (e) => {
 });
 
 // enable player to select equals
-// will need to input this -- if (typeof numbers.at(-1) === "number" || typeof currentNumber.at(-1) === "number")
 
 operateEquals.addEventListener("click", (e) => {
   if (
@@ -936,7 +935,7 @@ operateEquals.addEventListener("click", (e) => {
       }
     }
   }
-  showCalc();
+  checkDisplayLength();
 });
 
 //enable the player to select clear
@@ -1116,7 +1115,7 @@ function negativeFindAndRemove() {
     }
   }
 }
-
+// show the minidisplay on top of calc
 function showCalc() {
   if (currentNumber.length === 2) {
     numbersCalc.innerText = `${currentNumber.join(" ")}`;
@@ -2152,7 +2151,22 @@ document.addEventListener(
         }
       }
       showCalc();
+    } else if (e.shiftKey === true && e.key === "Backspace") {
+      // need to fix this. not working
+      display.style.fontSize = "60px";
+      display.innerText = 0;
+      firstDigit = "";
+      numbers = [];
+      currentNumber = [];
+      latestNumber = "";
+      convertNum = "";
+      displayNum = "";
+      numbersCalc.innerText = "";
+      theView = [];
+      theViewFinal = "";
     } else {
+      console.log(e.key);
+      console.log(e.shiftKey);
     }
   },
   false
